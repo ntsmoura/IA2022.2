@@ -1,16 +1,21 @@
 import random
+import time
+
 import gym
 import numpy as np
 
 
 def train_q_learn_gym(env_name, episodes, alpha, gamma, epsilon):
+    print("Porcentagem concluída: 0%")
+    percent = 0.1
+
     env = gym.make(env_name)
 
     env.reset()
 
     q_table = np.zeros([env.observation_space.n, env.action_space.n])
 
-    for i in range(1, 100001):
+    for i in range(1, episodes):
         state = env.reset()[0]
 
         epochs, penalties, reward, = 0, 0, 0
@@ -37,22 +42,26 @@ def train_q_learn_gym(env_name, episodes, alpha, gamma, epsilon):
             state = next_state
             epochs += 1
 
-        if i % episodes * .1 == 0:
-            print(f"Episode: {i}")
+        if i >= float(episodes) * percent:
+            print(f"Porcentagem concluída: {round(percent*100,1)}%")
+            percent += 0.1
 
-    print("Fim do treinamento.\n")
+    env.close()
+    print("Porcentagem concluída 100%.\nFim do treinamento.\n")
+    return q_table
 
 
-def run_q_learn_gym(env_name, model, episodes, metrics=False):
+def run_q_learn_gym(env_name, model, episodes, run_animation):
     q_table = model
-    if not metrics:
+    if run_animation:
         env = gym.make(env_name, render_mode="human")
     else:
         env = gym.make(env_name)
+    env.reset()
 
     total_epochs, total_penalties, total_reward = 0, 0, 0
 
-    for _ in range(episodes):
+    for i in range(episodes):
         state = env.reset()[0]
         epochs, penalties, reward = 0, 0, 0
 
@@ -74,3 +83,4 @@ def run_q_learn_gym(env_name, model, episodes, metrics=False):
     print(f"Average timesteps per episode: {total_epochs / episodes}")
     print(f"Average penalties per episode: {total_penalties / episodes}")
     print(f"Average reward per episode: {total_reward / episodes}")
+    env.close()
