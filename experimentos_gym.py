@@ -3,15 +3,20 @@ import time
 
 import gym
 import numpy as np
+from gym.envs.toy_text.frozen_lake import generate_random_map
 
 
 def train_q_learn_gym(env_name, episodes, alpha, gamma, epsilon):
     print("Porcentagem concluída: 0%")
     percent = 0.1
 
-    env = gym.make(env_name)
+    env = gym.make(env_name, map_name="4x4", is_slippery=False) \
+        if env_name.startswith("FrozenLake") else gym.make(env_name)
 
-    q_table = np.zeros([env.observation_space.n, env.action_space.n])
+    try:
+        q_table = np.load(f"{env_name}-best.npy")
+    except FileNotFoundError:
+        q_table = np.zeros([env.observation_space.n, env.action_space.n])
 
     for i in range(1, episodes):
         state = env.reset()[0]
@@ -41,7 +46,7 @@ def train_q_learn_gym(env_name, episodes, alpha, gamma, epsilon):
             epochs += 1
 
         if i >= float(episodes) * percent:
-            print(f"Porcentagem concluída: {round(percent*100,1)}%")
+            print(f"Porcentagem concluída: {round(percent * 100, 1)}%")
             percent += 0.1
 
     env.close()
@@ -56,11 +61,12 @@ def run_q_learn_gym(env_name, episodes, animation=True):
         q_table = np.load(f"{env_name}-best.npy")
     except FileNotFoundError:
         print(f"Nenhum modelo treinado para {env_name}. Treine algum modelo antes!")
-        exit()
-    if animation:
-        env = gym.make(env_name, render_mode="human")
+        return
+    if env_name.startswith("FrozenLake"):
+        env = gym.make(env_name, map_name="4x4", is_slippery=False, render_mode="human") if animation\
+            else gym.make(env_name, map_name="4x4", is_slippery=False)
     else:
-        env = gym.make(env_name)
+        env = gym.make(env_name, render_mode="human") if animation else gym.make(env_name)
 
     total_epochs, total_penalties, total_reward = 0, 0, 0
 
@@ -82,8 +88,8 @@ def run_q_learn_gym(env_name, episodes, animation=True):
         total_epochs += epochs
         total_reward += reward
 
+    env.close()
     print(f"Resultado(s) depois de {episodes} episódio(s):")
     print(f"Tempo médio por episódio: {total_epochs / episodes}")
     print(f"Penalidade média por episódio: {total_penalties / episodes}")
     print(f"Recompensa média por episódio: {total_reward / episodes}\n")
-    env.close()
