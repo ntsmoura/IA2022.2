@@ -54,7 +54,7 @@ def train_q_learn_gym(env_name, episodes, alpha, gamma, epsilon):
 def run_q_learn_gym(env_name, model, episodes, run_animation):
     q_table = model
     if run_animation:
-        env = gym.make(env_name, render_mode="human")
+        env = gym.make(env_name, render_mode="ansi")
     else:
         env = gym.make(env_name)
     env.reset()
@@ -62,6 +62,7 @@ def run_q_learn_gym(env_name, model, episodes, run_animation):
     total_epochs, total_penalties, total_reward = 0, 0, 0
 
     for i in range(episodes):
+        print(f"Episódio {i+1}")
         state = env.reset()[0]
         epochs, penalties, reward = 0, 0, 0
 
@@ -69,6 +70,7 @@ def run_q_learn_gym(env_name, model, episodes, run_animation):
 
         while not done:
             action = np.argmax(q_table[state])
+            print(env.render())
             state, reward, done, truncated, info = env.step(action)
             if reward == -10:
                 penalties += 1
@@ -79,8 +81,8 @@ def run_q_learn_gym(env_name, model, episodes, run_animation):
         total_epochs += epochs
         total_reward += reward
 
-    print(f"Results after {episodes} episodes:")
-    print(f"Average timesteps per episode: {total_epochs / episodes}")
-    print(f"Average penalties per episode: {total_penalties / episodes}")
-    print(f"Average reward per episode: {total_reward / episodes}")
+    print(f"Resultado(s) depois de {episodes} episódio(s):")
+    print(f"Tempo médio por episódio: {total_epochs / episodes}")
+    print(f"Penalidade média por episódio: {total_penalties / episodes}")
+    print(f"Recompensa média por episódio: {total_reward / episodes}")
     env.close()

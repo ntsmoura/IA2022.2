@@ -1,7 +1,5 @@
 from time import sleep
 
-import gym
-
 from experimentos_gym import *
 
 q_table = None
