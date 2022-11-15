@@ -48,13 +48,19 @@ def train_q_learn_gym(env_name, episodes, alpha, gamma, epsilon):
 
     env.close()
     print("Porcentagem concluída 100%.\nFim do treinamento.\n")
-    return q_table
+    np.save(f"{env_name}-best.npy", q_table)
+    print("Modelo salvo!")
 
 
-def run_q_learn_gym(env_name, model, episodes, run_animation):
-    q_table = model
-    if run_animation:
-        env = gym.make(env_name, render_mode="ansi")
+def run_q_learn_gym(env_name, episodes, animation=True):
+    q_table = None
+    try:
+        q_table = np.load(f"{env_name}-best.npy")
+    except FileNotFoundError:
+        print(f"Nenhum modelo treinado para {env_name}. Treine algum modelo antes!")
+        exit()
+    if animation:
+        env = gym.make(env_name, render_mode="human")
     else:
         env = gym.make(env_name)
     env.reset()
@@ -62,7 +68,6 @@ def run_q_learn_gym(env_name, model, episodes, run_animation):
     total_epochs, total_penalties, total_reward = 0, 0, 0
 
     for i in range(episodes):
-        print(f"Episódio {i+1}")
         state = env.reset()[0]
         epochs, penalties, reward = 0, 0, 0
 
@@ -70,7 +75,6 @@ def run_q_learn_gym(env_name, model, episodes, run_animation):
 
         while not done:
             action = np.argmax(q_table[state])
-            print(env.render())
             state, reward, done, truncated, info = env.step(action)
             if reward == -10:
                 penalties += 1

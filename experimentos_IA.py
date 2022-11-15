@@ -16,9 +16,9 @@ while True:
 
 while True:
     try:
-        action = int(input("Escolha a ação:\n1-Treinar\n2-Executar\n3-Finalizar\n"))
+        action = int(input("Escolha a ação:\n1-Treinar\n2-Executar\n3-Métricas\n4-Sair\n"))
     except ValueError:
-        print("Ação não reconhecida! Tente novamente!")
+        print("Ação não válida! Tente novamente!")
         continue
     match action:
         case 1:
@@ -28,17 +28,12 @@ while True:
             epsilon = float(input("Digite o hiperparâmetro epsilon:"))
             q_table = train_q_learn_gym(env_name, episodes, alpha, gamma, epsilon)
         case 2:
-            if q_table is None:
-                print(f"Nenhum modelo treinado para {env_name}. Treine algum modelo antes!")
-            else:
-                episodes = int(input("Digite a quantidade de episódios:"))
-                animation = int(input("Deseja animação?\n1-Sim\n2-Não\n"))
-                if animation == 1:
-                    run_q_learn_gym(env_name, q_table, episodes, True)
-                else:
-                    run_q_learn_gym(env_name, q_table, episodes, False)
+            run_q_learn_gym(env_name, 10)
         case 3:
+            episodes = int(input("Digite a quantidade de episódios:"))
+            run_q_learn_gym(env_name, episodes, False)
+        case 4:
             print("Até mais!")
             break
         case _:
-            print("Ação não reconhecida! Tente novamente!")
+            print("Ação inválida! Tente novamente.")
