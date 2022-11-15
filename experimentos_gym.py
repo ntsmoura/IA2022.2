@@ -11,8 +11,6 @@ def train_q_learn_gym(env_name, episodes, alpha, gamma, epsilon):
 
     env = gym.make(env_name)
 
-    env.reset()
-
     q_table = np.zeros([env.observation_space.n, env.action_space.n])
 
     for i in range(1, episodes):
@@ -63,7 +61,6 @@ def run_q_learn_gym(env_name, episodes, animation=True):
         env = gym.make(env_name, render_mode="human")
     else:
         env = gym.make(env_name)
-    env.reset()
 
     total_epochs, total_penalties, total_reward = 0, 0, 0
 
@@ -88,5 +85,5 @@ def run_q_learn_gym(env_name, episodes, animation=True):
     print(f"Resultado(s) depois de {episodes} episódio(s):")
     print(f"Tempo médio por episódio: {total_epochs / episodes}")
     print(f"Penalidade média por episódio: {total_penalties / episodes}")
-    print(f"Recompensa média por episódio: {total_reward / episodes}")
+    print(f"Recompensa média por episódio: {total_reward / episodes}\n")
     env.close()
