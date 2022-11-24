@@ -9,6 +9,7 @@ from gym.envs.toy_text.frozen_lake import generate_random_map
 def train_q_learn_gym(env_name, episodes, alpha, gamma, epsilon):
     print("Porcentagem concluída: 0%")
     percent = 0.1
+    total_epochs = 0
 
     env = gym.make(env_name, map_name="4x4", is_slippery=False) \
         if env_name.startswith("FrozenLake") else gym.make(env_name)
@@ -17,8 +18,7 @@ def train_q_learn_gym(env_name, episodes, alpha, gamma, epsilon):
         q_table = np.load(f"{env_name}-best.npy")
     except FileNotFoundError:
         q_table = np.zeros([env.observation_space.n, env.action_space.n])
-
-    for i in range(1, episodes):
+    for i in range(episodes):
         state = env.reset()[0]
 
         epochs, penalties, reward, = 0, 0, 0
@@ -45,12 +45,16 @@ def train_q_learn_gym(env_name, episodes, alpha, gamma, epsilon):
             state = next_state
             epochs += 1
 
-        if i >= float(episodes) * percent:
+        total_epochs += epochs
+
+        if (i+1) >= float(episodes) * percent:
             print(f"Porcentagem concluída: {round(percent * 100, 1)}%")
             percent += 0.1
 
     env.close()
     print("Porcentagem concluída 100%.\nFim do treinamento.\n")
+    print(f"Total de épocas: {total_epochs}")
+    print(f"Quantidade média de épocas por episódio: {total_epochs / episodes}")
     np.save(f"{env_name}-best.npy", q_table)
     print("Modelo salvo!")
 
@@ -90,6 +94,6 @@ def run_q_learn_gym(env_name, episodes, animation=True):
 
     env.close()
     print(f"Resultado(s) depois de {episodes} episódio(s):")
-    print(f"Tempo médio por episódio: {total_epochs / episodes}")
+    print(f"Quantidade média de épocas por episódio: {total_epochs / episodes}")
     print(f"Penalidade média por episódio: {total_penalties / episodes}")
     print(f"Recompensa média por episódio: {total_reward / episodes}\n")
