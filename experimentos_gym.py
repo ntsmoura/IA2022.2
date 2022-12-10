@@ -18,6 +18,7 @@ def train_q_learn_gym(env_name, episodes, alpha, gamma, epsilon):
         q_table = np.load(f"{env_name}-best.npy")
     except FileNotFoundError:
         q_table = np.zeros([env.observation_space.n, env.action_space.n])
+    start_time = time.time()
     for i in range(episodes):
         state = env.reset()[0]
 
@@ -39,7 +40,7 @@ def train_q_learn_gym(env_name, episodes, alpha, gamma, epsilon):
             new_value = (1 - alpha) * old_value + alpha * (reward + gamma * next_max)
             q_table[state, action] = new_value
 
-            if reward == -10:
+            if (reward == -10) or (reward == -100):
                 penalties += 1
 
             state = next_state
@@ -47,14 +48,15 @@ def train_q_learn_gym(env_name, episodes, alpha, gamma, epsilon):
 
         total_epochs += epochs
 
-        if (i+1) >= float(episodes) * percent:
+        if (i + 1) >= float(episodes) * percent:
             print(f"Porcentagem concluída: {round(percent * 100, 1)}%")
             percent += 0.1
-
+    end_time = time.time()
     env.close()
     print("Porcentagem concluída 100%.\nFim do treinamento.\n")
     print(f"Total de épocas: {total_epochs}")
     print(f"Quantidade média de épocas por episódio: {total_epochs / episodes}")
+    print(f"Quantidade média de tempo por episódio: {'{:.5f}'.format((end_time-start_time)/episodes)} s")
     np.save(f"{env_name}-best.npy", q_table)
     print("Modelo salvo!")
 
@@ -67,13 +69,14 @@ def run_q_learn_gym(env_name, episodes, animation=True):
         print(f"Nenhum modelo treinado para {env_name}. Treine algum modelo antes!")
         return
     if env_name.startswith("FrozenLake"):
-        env = gym.make(env_name, map_name="4x4", is_slippery=False, render_mode="human") if animation\
+        env = gym.make(env_name, map_name="4x4", is_slippery=False, render_mode="human") if animation \
             else gym.make(env_name, map_name="4x4", is_slippery=False)
     else:
         env = gym.make(env_name, render_mode="human") if animation else gym.make(env_name)
 
     total_epochs, total_penalties, total_reward = 0, 0, 0
 
+    start_time = time.time()
     for i in range(episodes):
         state = env.reset()[0]
         epochs, penalties, reward = 0, 0, 0
@@ -83,7 +86,7 @@ def run_q_learn_gym(env_name, episodes, animation=True):
         while not done:
             action = np.argmax(q_table[state])
             state, reward, done, truncated, info = env.step(action)
-            if reward == -10:
+            if (reward == -10) or (reward == -100):
                 penalties += 1
 
             epochs += 1
@@ -91,9 +94,10 @@ def run_q_learn_gym(env_name, episodes, animation=True):
         total_penalties += penalties
         total_epochs += epochs
         total_reward += reward
-
+    end_time = time.time()
     env.close()
     print(f"Resultado(s) depois de {episodes} episódio(s):")
-    print(f"Quantidade média de épocas por episódio: {total_epochs / episodes}")
+    print(f"Quantidade média de épocas por episódio: {total_epochs / episodes}\n")
+    print(f"Quantidade média de tempo por episódio: {'{:.5f}'.format((end_time-start_time)/episodes)} s")
     print(f"Penalidade média por episódio: {total_penalties / episodes}")
     print(f"Recompensa média por episódio: {total_reward / episodes}\n")

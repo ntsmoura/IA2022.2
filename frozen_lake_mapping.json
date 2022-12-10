@@ -1,0 +1,63 @@
+[
+  {
+    "father": null,
+    "id": 1,
+    "child": [2, 5],
+    "final": false
+  },
+  {
+    "id": 2,
+    "child": [3],
+    "final": false
+  },
+  {
+    "id": 3,
+    "child": [4,6],
+    "final": false
+  },
+  {
+    "id": 4,
+    "child": [3],
+    "final": false
+  },
+  {
+    "id": 5,
+    "child": [1,7],
+    "final": false
+  },
+  {
+    "id": 6,
+    "child": [9],
+    "final": false
+  },
+  {
+    "id": 7,
+    "child":[5,8],
+    "final": false
+  },
+  {
+    "id": 8,
+    "child": [9,10],
+    "final": false
+  },
+  {
+    "id": 9,
+    "child": [6,8,11],
+    "final": false
+  },
+  {
+    "id": 10,
+    "child": [8,11],
+    "final": false
+  },
+  {
+    "id": 11,
+    "child": [9,10,12],
+    "final": false
+  },
+  {
+    "id": 12,
+    "child": [11],
+    "final": true
+  }
+]

@@ -4,8 +4,10 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
+swig = "*"
 gym = {extras = ["box2d"], version = "*"}
 pick = "*"
+
 
 [dev-packages]
 
