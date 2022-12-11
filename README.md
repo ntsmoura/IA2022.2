@@ -45,6 +45,8 @@ Essa aplicação utiliza as seguintes tecnologias:
 
 ## :boom: Como rodar
 
+Certifique-se de ter python 3.10+ instalado.
+
 Inicialmente clone o diretório e mude para a pasta principal:
 
 ```sh
@@ -57,10 +59,16 @@ $ cd IA2022.2
 Se já tiver o pipenv instalado, basta instalar as dependências e rodar o pipenv shell:
 
 ```sh
-# Rodando pipenv shell
+# Se tiver pipenv instalado
+$ pipenv install
+$ pipenv shell
+	
+# Se não houver pipenv instalado
+$ pip install pipenv
 $ pipenv install
 $ pipenv shell
 ```	
+
 
 E para executar qualquer um dos algoritmos, basta utilizar o comando do python instalado:
 
