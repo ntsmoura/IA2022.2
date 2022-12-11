@@ -28,7 +28,7 @@
 ## :book: Introdução
 
 Este repositório contém 2 aplicações simples com propósitos distintos:
-- ["qlearn"](https://github.com/ntsmoura/IA2022.2/blob/master/qlearn.py) disponibilza uma interface simples para treinar e executadr modelos gerados utilizando qlearn, dos ambientes do [Gym](https://www.gymlibrary.dev/content/basic_usage/) : [Taxi](https://www.gymlibrary.dev/environments/toy_text/taxi/), [Cliff Walking](https://www.gymlibrary.dev/environments/toy_text/cliff_walking/) e [Frozen Lake](https://www.gymlibrary.dev/environments/toy_text/frozen_lake/).
+- ["qlearn"](https://github.com/ntsmoura/IA2022.2/blob/master/qlearn.py) disponibilza uma interface simples para treinar e executar modelos gerados utilizando qlearn, dos ambientes do [Gym](https://www.gymlibrary.dev/content/basic_usage/) : [Taxi](https://www.gymlibrary.dev/environments/toy_text/taxi/), [Cliff Walking](https://www.gymlibrary.dev/environments/toy_text/cliff_walking/) e [Frozen Lake](https://www.gymlibrary.dev/environments/toy_text/frozen_lake/).
 - ["search"](https://github.com/ntsmoura/IA2022.2/blob/master/search.py) realiza buscas em largura e profundidade para um mapeamento controlado do ambiente de [Frozen Lake](https://www.gymlibrary.dev/environments/toy_text/frozen_lake/), ignorando a existência de buracos e mapeando somente gelo e o estado final. O mapeamento está disponível através do [json](https://github.com/ntsmoura/IA2022.2/blob/master/frozen_lake_mapping.json).
 
 <a id="tecnologias"></a>
