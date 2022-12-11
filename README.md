@@ -18,8 +18,6 @@
 - [:book: Introdução](#book-introdução)
 - [:rocket: Tecnologias](#rocket-tecnologias)
 - [:boom: Como rodar](#boom-como-rodar)
-    - [Prerequisitos](#prerequisitos)
-    - [Rodando com xampp](#rodando-com-xampp)
 
 <a id="doc"></a>
 
@@ -29,10 +27,9 @@
 
 ## :book: Introdução
 
-Esta é uma aplicação feita com ThreeJs para a disciplina MATE65 - Computação Gráfica com o objetivo de implementar três tipos de passeio sobre o modelo [Sponza](https://github.com/jimmiebergmann/Sponza). Os passeios correspondem a três modos distinto de visão:
-- Modo "A pé" - Remete a uma pessoa caminhando dentro do modelo
-- Modo "Drone" - Remete aos graus de liberdade de um drone voando sobre o modelo
-- Modo "Visita Guiada" - Remete a uma visita automática sobre o modelo com pontos pré-definidos e um guia amigável
+Este repositório contém 2 aplicações simples com propósitos distintos:
+- ["qlearn"](https://github.com/ntsmoura/IA2022.2/blob/master/qlearn.py) disponibilza uma interface simples para treinar e executadr modelos gerados utilizando qlearn, dos ambientes do [Gym](https://www.gymlibrary.dev/content/basic_usage/) : [Taxi](https://www.gymlibrary.dev/environments/toy_text/taxi/), [Cliff Walking](https://www.gymlibrary.dev/environments/toy_text/cliff_walking/) e [Frozen Lake](https://www.gymlibrary.dev/environments/toy_text/frozen_lake/).
+- ["search"](https://github.com/ntsmoura/IA2022.2/blob/master/search.py) realiza buscas em largura e profundidade para um mapeamento controlado do ambiente de [Frozen Lake](https://www.gymlibrary.dev/environments/toy_text/frozen_lake/), ignorando a existência de buracos e mapeando somente gelo e o estado final. O mapeamento está disponível através do [json](https://github.com/ntsmoura/IA2022.2/blob/master/frozen_lake_mapping.json).
 
 <a id="tecnologias"></a>
 
