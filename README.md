@@ -78,7 +78,9 @@ $ py qlearn.py
 $ py search.py
 ```
 
-Obs: Se houver erro em instalar o gym[box2d] faça o seguinte
+Obs: 
+	
+1. Se houver erro em instalar o gym[box2d] faça o seguinte
 	
 ```sh
 # Instalando box2d
@@ -86,6 +88,9 @@ $ pip install swig
 $ pip install gym[box2d]
 $ pipenv install
 ```
+
+1. Para utilizar ambientes diferentes no qlearn.py basta encerrar e iniciar novamente a aplicação.
+1. Qualquer dúvida pode entrar em contato com natan.moura@ufba.br
 	
 </div>
 
