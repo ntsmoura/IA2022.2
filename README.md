@@ -1,9 +1,8 @@
-# Atividade de IA 2022.2 - Frozen Lake (Busca e QLearn)
 
 <!-- Logo -->
 
 <h1 align="center" style="font-family: Ubuntu; font-size: 45px; color: #333; margin-bottom: 0">
-  Frozen-lake: Uma perspectiva através da busca e do Qlearn
+  Atividade de IA 2022.2 - Frozen Lake (Busca e QLearn)
 </h1>
 
 <!-- Description -->
