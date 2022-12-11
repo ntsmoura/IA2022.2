@@ -21,9 +21,6 @@
 - [:boom: Como rodar](#boom-como-rodar)
     - [Prerequisitos](#prerequisitos)
     - [Rodando com xampp](#rodando-com-xampp)
-- [:sparkles: Tipos de passeio](#sparkles-tipos-de-passeio)
-- [:no_entry: Confinamento ao modelo](#no_entry-confinamento-ao-modelo)
-- [:european_castle: Cubemap background](#european_castle-cubemap-background)
 
 <a id="doc"></a>
 
