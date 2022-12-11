@@ -37,28 +37,47 @@ Este repositório contém 2 aplicações simples com propósitos distintos:
 
 Essa aplicação utiliza as seguintes tecnologias:
 
-- [ThreeJs](https://threejs.org/)
+- [Python3.10+](https://www.python.org/downloads/)
+- [Pipenv](https://pypi.org/project/pipenv/)
+- [Gym](https://www.gymlibrary.dev/)
 
 <a id="como-executar"></a>
 
 ## :boom: Como rodar
 
-#### Prerequisitos
-
-Para rodar essa aplicação é necessário somente um servidor HTTP, como Apache, VS Code Live Server, Nginx, entre outros. Mostrarei um exemplo utilizando o apache através do [Xampp](https://www.apachefriends.org/pt_br/index.html)
-
-#### Rodando com xampp
-
-Após instalar o xampp e configurar o terminal para o diretório principal de onde instalei-o, executo a seguinte sequência de comandos:
+Inicialmente clone o diretório e mude para a pasta principal:
 
 ```sh
-# Muda para o diretório htdocs e clona o repositório
-$ cd htdocs
-$ git clone https://github.com/MATA65-2022-1/atividade-01---visita-guiada-virtual-ntsmoura/
+# Clone de repo
+$ git clone https://github.com/ntsmoura/IA2022.2
+$ cd IA2022.2
 
 ```
 
-Ao clonar o repositório estou fazendo download de todas as dependências da aplicação, já que estas estão incluídas na pasta [Assets](https://github.com/MATA65-2022-1/atividade-01---visita-guiada-virtual-ntsmoura/tree/main/Assets). No caso do Xampp, eu inicio o servidor Apache e em qualquer browser acesso o link http://localhost/atividade-01---visita-guiada-virtual-ntsmoura/Passeio.html. Algo similar a isto deve aparecer:
+Se já tiver o pipenv instalado, basta instalar as dependências e rodar o pipenv shell:
+
+```sh
+# Rodando pipenv shell
+$ pipenv install
+$ pipenv shell
+```	
+
+E para executar qualquer um dos algoritmos, basta utilizar o comando do python instalado:
+
+```sh
+# Rodando algoritmos
+$ py qlearn.py
+$ py search.py
+```
+
+Obs: Se houver erro em instalar o gym[box2d] faça o seguinte
+	
+```sh
+# Instalando box2d
+$ pip install swig
+$ pip install gym[box2d]
+$ pipenv install
+```
 	
 </div>
 
