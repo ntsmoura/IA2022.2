@@ -3,13 +3,13 @@
 <!-- Logo -->
 
 <h1 align="center" style="font-family: Ubuntu; font-size: 45px; color: #333; margin-bottom: 0">
-  Passeios sobre modelo Sponza
+  Frozen-lake: Uma perspectiva através da busca e do Qlearn
 </h1>
 
 <!-- Description -->
 
 <h4 align="center">
-	UFBA - Instituto de Computação - MATE65 - 2022.1 - Natan Moura
+	UFBA - Instituto de Computação - MATA64 - 2022.2 - Natan Moura e Caio Nery
 </h4>
 
 <!-- Summary -->
